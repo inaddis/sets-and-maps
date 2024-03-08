@@ -12,7 +12,10 @@ class Ship {
     Ship(const std::string& shipName) : shipName(shipName), numCows(0) {}
 
     ~Ship() {
-
+        std::cout << "Ship named " << shipName << " has been destroyed." << std::endl;
+        for (Cow* cow : cowInventory) {
+          delete cow;
+        }
     }
 
     void abductCow(Cow* cow) {
@@ -25,5 +28,17 @@ class Ship {
         std::cout << "Error: Duplicate cow named " << cow->getName() << ". Abduction failed!" << std::endl;
         delete cow;
       }
+    }
+
+    const std::string& getShipName() const {
+      return shipName;
+    }
+
+    int getNumCows() const {
+      return numCows;
+    }
+
+    void blowUpShip(Ship* ship) {
+      delete ship;
     }
 };
